@@ -15,24 +15,4 @@
 
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
-    /*grid-gap: 10px ;*/
-}
-
-.header{
-    grid-area: h;
-    background: green;
-}
-
-.header img{
-    width: 50px;
-}
-
-.nav{
-    background: pink;
-    grid-area: n;
-}
-
-.content{
-    background: cadetblue;
-    grid-area: c;
 }
