@@ -1,8 +1,8 @@
-const Post = () => {
+const Post = (props) => {
     return (
         <div>
             <img src="https://avatar.vkplay.ru/avatar/148930859.90.jpeg" alt=""/>
-            post1
+            {props.message}
             <div>
                 <span>like</span>
             </div>
