@@ -5,7 +5,8 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-function App() {
+function App(props) {
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -16,8 +17,8 @@ function App() {
                 <div className="app-wrapper-content">
 
                     <Routes>
-                        <Route path="/profile" element={<Profile/>}/>
-                        <Route path="/dialogs/*" element={<Dialogs/>}/>
+                        <Route path="/profile" element={<Profile profilePages={props.state.profilePages}/>}/>
+                        <Route path="/dialogs/*" element={<Dialogs dialogsPages={props.state.dialogsPages}/>}/>
                     </Routes>
 
                 </div>
