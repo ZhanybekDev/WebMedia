@@ -3,27 +3,27 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/NavBar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 function App(props) {
 
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
 
-                <Navbar/>
+        <div className="app-wrapper">
+            <Header/>
 
-                <div className="app-wrapper-content">
+            <Navbar/>
 
-                    <Routes>
-                        <Route path="/profile" element={<Profile profilePages={props.state.profilePages}/>}/>
-                        <Route path="/dialogs/*" element={<Dialogs dialogsPages={props.state.dialogsPages}/>}/>
-                    </Routes>
+            <div className="app-wrapper-content">
 
-                </div>
+                <Routes>
+                    <Route path="/profile"
+                           element={<Profile profilePages={props.state.profilePages} addPost={props.addPost}/>}/>
+                    <Route path="/dialogs/*" element={<Dialogs dialogsPages={props.state.dialogsPages}/>}/>
+                </Routes>
+
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 

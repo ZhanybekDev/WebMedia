@@ -1,4 +1,6 @@
-export const state = {
+import {rerenderEntireThree} from "../rerender";
+
+const state = {
     profilePages: {
         posts: [
             {id: 1, text: "Hello, it`s my first post"},
@@ -19,3 +21,16 @@ export const state = {
         ],
     }
 }
+
+export const addPost = (postMessage) => {
+    let newPost = {
+        id: 5,
+        text: postMessage,
+        likesCount: 0
+    }
+    state.profilePages.posts.push(newPost)
+    rerenderEntireThree(state)
+}
+
+export default state
+
