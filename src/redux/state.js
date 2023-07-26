@@ -1,4 +1,6 @@
-import {rerenderEntireThree} from "../rerender";
+let rerenderEntireThree = () => {
+    console.log("Already`s update")
+}
 
 const state = {
     profilePages: {
@@ -37,6 +39,10 @@ export const addPost = () => {
 export const updateNewPostText = (newText) => {
     state.profilePages.newPostText = newText
     rerenderEntireThree(state)
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireThree = observer
 }
 
 export default state
