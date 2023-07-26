@@ -5,7 +5,8 @@ const state = {
         posts: [
             {id: 1, text: "Hello, it`s my first post"},
             {id: 2, text: "Hello, it`s my second post"}
-        ]
+        ],
+        newPostText: ""
     },
     dialogsPages: {
         dialogs: [
@@ -22,13 +23,19 @@ const state = {
     }
 }
 
-export const addPost = (postMessage) => {
+export const addPost = () => {
     let newPost = {
         id: 5,
-        text: postMessage,
+        text: state.profilePages.newPostText,
         likesCount: 0
     }
     state.profilePages.posts.push(newPost)
+    state.profilePages.newPostText = ''
+    rerenderEntireThree(state)
+}
+
+export const updateNewPostText = (newText) => {
+    state.profilePages.newPostText = newText
     rerenderEntireThree(state)
 }
 
