@@ -4,7 +4,6 @@ import Navbar from "./components/NavBar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
-import {updateNewPostText} from "./redux/state";
 
 function App(props) {
 
@@ -24,7 +23,7 @@ function App(props) {
                         />}
                     />
                     <Route path="/dialogs/*" element={
-                        <Dialogs dialogsPages={props.state.dialogsPages}/>}
+                        <Dialogs store={props.store}/>}
                     />
                 </Routes>
 
