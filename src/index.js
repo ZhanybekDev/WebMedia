@@ -1,10 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import store from './redux/store'
+import store from './redux/redux-store'
 import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 export const rerenderEntireThree = (state) => {
     root.render(
         <BrowserRouter>
@@ -15,4 +14,7 @@ export const rerenderEntireThree = (state) => {
 
 rerenderEntireThree(store.getState())
 
-store.subscribe(rerenderEntireThree)
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderEntireThree(state)
+})
