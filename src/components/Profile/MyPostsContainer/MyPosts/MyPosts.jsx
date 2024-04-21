@@ -3,10 +3,13 @@ import s from './MyPosts.module.css'
 import React from "react";
 
 const MyPosts = (props) => {
-
     let PostsElement = props.posts.map(post => <Post text={post.text}/>)
 
     let newPostElement = React.createRef()
+
+    let onAddPost = () => {
+        props.addPost()
+    }
 
     let onPostChange = () => {
         let text = newPostElement.current.value
@@ -26,7 +29,7 @@ const MyPosts = (props) => {
                 </disv>
 
                 <div>
-                    <button onClick={props.addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
 

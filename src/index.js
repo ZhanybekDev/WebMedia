@@ -1,20 +1,22 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import state, {addPost, subscribe, updateNewPostText} from './redux/state'
+import store from './redux/redux-store'
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 export const rerenderEntireThree = (state) => {
     root.render(
         <BrowserRouter>
-            <App state={state}
-                 updateNewPostText={updateNewPostText}
-                 addPost={addPost}/>
+            <Provider store={store}>
+                <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+            </Provider>
         </BrowserRouter>
     );
 }
 
-rerenderEntireThree(state)
-
-subscribe(rerenderEntireThree)
+rerenderEntireThree(store.getState())
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderEntireThree(state)
+})
