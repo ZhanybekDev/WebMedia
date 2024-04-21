@@ -16,7 +16,3 @@ export const rerenderEntireThree = (state) => {
 }
 
 rerenderEntireThree(store.getState())
-store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireThree(state)
-})
