@@ -1,9 +1,68 @@
 import React from 'react';
+import styles from './users.module.css'
 
 const Users = (props) => {
+    if(props.users.length === 0){
+        props.setUsers([
+            {
+                id: 1,
+                photoUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=1200&s=1",
+                followed: false,
+                fullName: "Zhanybek",
+                status: "I'm a developer",
+                location: {city: "Bishkek", country: "Kyrgyzstan"}
+            },
+            {
+                id: 2,
+                photoUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=1200&s=1",
+                followed: true,
+                fullName: "Nursultan",
+                status: "I'm a student",
+                location: {city: "Bishkek", country: "Kyrgyzstan"}
+            },
+            {
+                id: 3,
+                photoUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=1200&s=1",
+                followed: false,
+                fullName: "Amina",
+                status: "I'm a student",
+                location: {city: "Bishkek", country: "Kyrgyzstan"}
+            },
+        ])
+    }
+
     return (
         <div>
-            Users will be here
+            {
+                props.users.map(item => (
+                    <div key={item.id}>
+                        <span>
+                            <div>
+                                <img src={item.photoUrl} alt={item.fullName} className={styles.userPhoto}/>
+                            </div>
+
+                            <div>
+                                {
+                                    item.followed?
+                                        <button onClick={() => props.unfollow(item.id)}>Unfollow</button> :
+                                        <button onClick={() => props.follow(item.id)}>Follow</button>
+                                }
+                            </div>
+                        </span>
+                        <span>
+                            <span>
+                                <div>{item.fullName}</div>
+                                <div>{item.status}</div>
+                            </span>
+
+                            <span>
+                                <div>{item.location.city}</div>
+                                <div>{item.location.country}</div>
+                            </span>
+                        </span>
+                    </div>
+                ))
+            }
         </div>
     );
 };
