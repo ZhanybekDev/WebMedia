@@ -3,9 +3,9 @@ import styles from './users.module.css';
 import axios from "axios";
 import userPhoto from '../../assets/ava.jpg';
 
-class Users extends Component {g
-    constructor(props) {
-        super(props)
+class Users extends Component {
+
+    componentDidMount() {
         if (this.props.users.length === 0) {
             axios.get("https://social-network.samuraijs.com/api/1.0/users")
                 .then(res => {
@@ -13,6 +13,8 @@ class Users extends Component {g
                 });
         }
     }
+
+
     render() {
         return (
             <div>
