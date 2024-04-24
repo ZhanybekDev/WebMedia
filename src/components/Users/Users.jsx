@@ -3,8 +3,7 @@ import styles from './users.module.css';
 import axios from "axios";
 import userPhoto from '../../assets/ava.jpg';
 
-class Users extends Component {
-
+class Users extends Component {g
     constructor(props) {
         super(props)
         if (this.props.users.length === 0) {
@@ -14,7 +13,6 @@ class Users extends Component {
                 });
         }
     }
-
     render() {
         return (
             <div>
