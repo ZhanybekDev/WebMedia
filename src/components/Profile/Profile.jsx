@@ -3,12 +3,12 @@ import MyPostsContainer from "./MyPostsContainer/MyPostsContainer";
 
 const Profile = (props) => {
 
-    return (
-        <div>
-            <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
-        </div>
-    );
+        return (
+            <div>
+                <ProfileInfo profile={props.profile}/>
+                <MyPostsContainer/>
+            </div>
+        )
 };
 
 export default Profile;

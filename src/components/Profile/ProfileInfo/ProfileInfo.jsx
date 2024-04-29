@@ -1,7 +1,10 @@
 import s from './ProfileInfo.module.css'
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if(!props.profile){
+        return "Loading.."
+    }
     return (
         <div>
             <div>
@@ -9,6 +12,7 @@ const ProfileInfo = () => {
             </div>
 
             <div className={s.profileBlock}>
+                <img src={props.profile.photos.large} alt=""/>
                 Ava + description
             </div>
         </div>
