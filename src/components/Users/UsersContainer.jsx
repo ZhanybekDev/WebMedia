@@ -10,6 +10,7 @@ import {
 import Users from "./Users";
 import loading from '../../assets/loading.svg'
 import {usersAPI} from "../../api/api";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -54,6 +55,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps,
-    {follow, unFollow, setCurrentPage, toggleFollowingInProgress, getUsers})(UsersContainer);
+export default compose(
+    connect(mapStateToProps,
+        {follow, unFollow, setCurrentPage, toggleFollowingInProgress, getUsers})
+)(UsersContainer)
