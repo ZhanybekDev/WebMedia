@@ -1,4 +1,5 @@
 import s from './ProfileInfo.module.css'
+import ProfileStatus from "./ProfileStatus";
 
 
 const ProfileInfo = (props) => {
@@ -13,7 +14,7 @@ const ProfileInfo = (props) => {
 
             <div className={s.profileBlock}>
                 <img src={props.profile.photos.large} alt=""/>
-                Ava + description
+                <ProfileStatus status="hello my friends"/>
             </div>
         </div>
     );

@@ -9,9 +9,7 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import loading from '../../assets/loading.svg'
-import {usersAPI} from "../../api/api";
 import {compose} from "redux";
-
 
 class UsersContainer extends React.Component {
 
