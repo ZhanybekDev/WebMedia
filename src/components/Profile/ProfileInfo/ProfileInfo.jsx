@@ -1,7 +1,6 @@
 import s from './ProfileInfo.module.css'
 import ProfileStatus from "./ProfileStatus";
 
-
 const ProfileInfo = (props) => {
     if(!props.profile){
         return "Loading.."
@@ -14,7 +13,7 @@ const ProfileInfo = (props) => {
 
             <div className={s.profileBlock}>
                 <img src={props.profile.photos.large} alt=""/>
-                <ProfileStatus status="hello my friends"/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     );

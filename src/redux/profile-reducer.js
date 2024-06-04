@@ -1,8 +1,9 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 export const ADD_POST = "ADD_POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 export const SET_USER_PROFILE = "SET_USER_PROFILE"
+export const SET_STATUS = "SET_STATUS"
 
 let initialState = {
     posts: [
@@ -10,7 +11,8 @@ let initialState = {
         {id: 2, text: "Hello, it`s my second post"}
     ],
     newPostText: "",
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState,action) => {
@@ -39,12 +41,21 @@ const profileReducer = (state = initialState,action) => {
                 profile: action.profile
             }
         }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state
     }
 }
 
 export const addPostActionCreator = () => ({type: ADD_POST})
+
+export const setStatus = (status) => ({type: SET_STATUS, status})
+
 export const updateNewPostTextActionCreator = (text) =>({
     type: UPDATE_NEW_POST_TEXT, newText: text
 })
@@ -55,6 +66,24 @@ export const getUserProfile = (userId) => (dispatch) => {
     usersAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfile(res.data))
+        });
+}
+
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(res => {
+            if(!res.data.resultCode === 0){
+                dispatch(setStatus(res.data))
+            }
+        });
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(res => {
+            if(!res.data.resultCode === 0){
+                dispatch(setStatus(status))
+            }
         });
 }
 
