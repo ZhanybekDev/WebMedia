@@ -9,6 +9,8 @@ const loginFormSchema = Yup.object().shape({
         .required("Required"),
     password: Yup.string()
         .min(6, "Must be longer than 8 characters")
-        .required("Required")
+        .required("Required"),
+    main: Yup.string()
+
 });
 export default loginFormSchema;
