@@ -1,5 +1,5 @@
 import s from './ProfileInfo.module.css'
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
     if(!props.profile){
@@ -13,7 +13,7 @@ const ProfileInfo = (props) => {
 
             <div className={s.profileBlock}>
                 <img src={props.profile.photos.large} alt=""/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     );
