@@ -1,64 +1,23 @@
 import React from "react"
-import styles from "./users.module.css";
-import userPhoto from "../../assets/ava.jpg";
-import {NavLink} from "react-router-dom";
+import Paginator from "./Paginator";
+import User from "./User";
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-
-    for(let i= 1; i <= pagesCount; i++ ){
-        pages.push(i)
-    }
-
     return (
         <div>
-            <div>
-                {
-                    pages.map(item => (
-                        <span className={props.currentPage === item && styles.selectedPage}
-                              onClick={() => {
-                                  props.onPageChanged(item)
-                              }}
-                        >{item}</span>
-                    ))
-                }
-            </div>
+            <Paginator totalUsersCount={props.totalUsersCount}
+                       pageSize={props.pageSize}
+                       currentPage={props.currentPage}
+                       onPageChanged={props.onPageChanged}
+            />
+
             {props.users.map(item => (
-                <div key={item.id}>
-                        <span>
-                            <div>
-                                <NavLink to={'/profile/' + item.id} >
-                                    <img src={item.photos.small !== null ? item.photos.small : userPhoto}
-                                         alt={item.fullName} className={styles.userPhoto}/>
-                                </NavLink>
-                            </div>
-
-                            <div>
-                                {item.followed ?
-                                    <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
-                                        props.unFollow(item.id)
-                                    }}>Unfollow</button> :
-
-                                    <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
-                                        props.follow(item.id)
-                                    }}>Follow</button>
-                                }
-                            </div>
-                        </span>
-                    <span>
-                            <span>
-                                <div>{item.name}</div>
-                                <div>{item.status}</div>
-                            </span>
-
-                            <span>
-                                <div>item.location.city</div>
-                                <div>item.location.country</div>
-                            </span>
-                        </span>
-                </div>
+                <User item={item}
+                      followingInProgress={props.followingInProgress}
+                      unFollow={props.unFollow}
+                      follow={props.follow}
+                />
             ))}
         </div>
     )
