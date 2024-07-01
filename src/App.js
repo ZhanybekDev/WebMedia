@@ -1,16 +1,19 @@
 import './App.css';
 import Navbar from "./components/NavBar/Navbar";
-import {Route, Routes, useParams} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
 import DialogsContainer from "./components/DialogsContainer/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import React from "react";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import loading from "./assets/loading.svg";
+import store from './redux/redux-store'
+
+
 
 export function withRouter(Children){
     return(props)=>{
@@ -51,7 +54,19 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-export default compose(
+let AppContainer = compose(
     withRouter,
     connect(mapStateToProps,  {initializeApp}),
 )(App)
+
+const SocialApp = (props) => {
+    return(
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
+
+export default SocialApp
