@@ -8,3 +8,7 @@
     font-weight: bold;
     color: red;
 }
+
+span{
+    border: 1px solid black;
+}

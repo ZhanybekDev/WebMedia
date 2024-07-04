@@ -1,19 +1,17 @@
+import React, {Suspense} from 'react'
 import './App.css';
 import Navbar from "./components/NavBar/Navbar";
-import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
-import DialogsContainer from "./components/DialogsContainer/DialogsContainer";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import React from "react";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import loading from "./assets/loading.svg";
 import store from './redux/redux-store'
-
-
+const DialogsContainer = React.lazy(() => import("./components/DialogsContainer/DialogsContainer"));
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
 export function withRouter(Children){
     return(props)=>{
@@ -34,7 +32,8 @@ class App extends React.Component {
         }
 
         return (
-            <div className="app-wrapper">
+            <Suspense fallback={<div>Loading...</div>}>
+                <div className="app-wrapper">
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
@@ -46,6 +45,7 @@ class App extends React.Component {
                     </Routes>
                 </div>
             </div>
+            </Suspense>
         );
     }
 }
